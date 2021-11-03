@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/primary_quiz"
+    tools:context=".DashboardActivity"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/relative"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="#094D83">
+
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_baseline_arrow_back_ios_24"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_centerVertical="true"/>
+
+        <TextView
+            android:id="@+id/exit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Exit"
+            android:textSize="18sp"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:layout_marginEnd="10dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:layout_centerVertical="true"/>
+    </RelativeLayout>
+
+    <com.google.android.material.progressindicator.LinearProgressIndicator
+        android:id="@+id/quest_timer"
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:maxHeight="12dp"
+        android:minHeight="12dp"
+        android:max="15"
+        android:progress="10"
+        android:indeterminate="false"
+        app:indicatorColor="#FFC107"
+        app:trackColor="@color/white"
+        app:trackCornerRadius="20dp"/>
+
+    <TextView
+        android:id="@+id/quiz_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="QUIZ TIME"
+        android:textSize="25sp"
+        android:textColor="@color/teal_200"
+        android:textColorHighlight="@color/white"
+        android:gravity="center_horizontal"
+        android:textStyle="bold"
+        android:layout_margin="20dp"
+        android:shadowColor="#5464BD"
+        android:shadowRadius="5"
+        />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardview"
+        app:cardCornerRadius="30dp"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/quiz_time"
+        android:layout_centerInParent="true"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="50dp"
+        android:layout_gravity="center"
+        android:outlineAmbientShadowColor="@color/white"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="420dp"
+            android:orientation="vertical"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textAlignment="center"
+            android:background="@drawable/d1"
+            android:showDividers="middle"
+            android:outlineAmbientShadowColor="@color/white">
+
+            <TextView
+                android:id="@+id/quest"
+                android:layout_below="@+id/quiz_arena"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="QUESTIONS"
+                android:textSize="18sp"
+                android:textColor="@color/black"
+                android:textColorHighlight="@color/white"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center"
+                />
+            <LinearLayout
+                android:id="@+id/linear"
+                android:layout_below="@+id/quest"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_margin="20dp">
+
+                <Button
+                    android:id="@+id/b1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Option 1"
+                    android:textSize="16sp"
+                    android:textColor="@color/black"
+                    android:backgroundTint="#06BCAB"
+                    />
+                <Button
+                    android:id="@+id/b2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Option 2"
+                    android:textSize="16sp"
+                    android:textColor="@color/black"
+                    android:backgroundTint="#06BCAB"
+                    />
+                <Button
+                    android:id="@+id/b3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Option 3"
+                    android:textSize="16sp"
+                    android:textColor="@color/black"
+                    android:backgroundTint="#06BCAB"
+                    />
+                <Button
+                    android:id="@+id/b4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Option 4"
+                    android:textSize="16sp"
+                    android:textColor="@color/black"
+                    android:backgroundTint="#06BCAB"
+                    />
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/nextbtn"
+        android:layout_width="300dp"
+        android:layout_height="30dp"
+        android:text="next"
+        android:textAllCaps="true"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:contextClickable="true"
+        android:layout_gravity="center"
+        android:layout_margin="20dp"
+        android:textAlignment="center"
+        android:background="@drawable/d2"
+        android:shadowColor="#E6EBED"
+        android:shadowRadius="5"/>
+</LinearLayout>
