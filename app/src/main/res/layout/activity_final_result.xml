@@ -70,20 +70,34 @@
     </RelativeLayout>
 
     <RelativeLayout
+        android:id="@+id/testagain"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/resultprogress"
         android:layout_centerInParent="true">
 
-        <Button
-            android:id="@+id/replay"
+        <LinearLayout
+            android:clickable="true"
+            android:id="@+id/sharescore"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Test Again"
-            android:layout_margin="20dp"
-            android:layout_gravity="center"
+            android:layout_height="40dp"
+            android:layout_margin="25dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp"
             android:gravity="center"
-            android:backgroundTint="#43B524"
-            />
+            android:paddingHorizontal="20dp"
+            android:layout_centerInParent="true"
+            android:background="@drawable/d4">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Share You'r Score"
+                android:textAlignment="center"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                android:textColor="#05345A"
+                android:layout_gravity="center"/>
+        </LinearLayout>
     </RelativeLayout>
 </RelativeLayout>

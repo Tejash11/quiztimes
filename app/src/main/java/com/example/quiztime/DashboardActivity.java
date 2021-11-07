@@ -1,6 +1,7 @@
 package com.example.quiztime;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import android.app.Dialog;
 import android.content.Intent;
@@ -26,100 +27,35 @@ import java.util.Random;
 import static com.example.quiztime.MainActivity.quizModals;
 
 public class DashboardActivity extends AppCompatActivity {
-    private TextView questions, quiz;
-    private Button optbtn1, optbtn2, optbtn3, optbtn4;
+    private TextView questions, textbtnA, textbtnB, textbtnC, textbtnD;
+    CardView cardOptA, cardOptB, cardOptC, cardOptD;
     List<QuizModal> allquestionlist;
     QuizModal quizModal;
-    int correct=0,wrong=0,index=0;
-    int currentscore =0, questAttempted =1, currentpos;
-
+    int correct = 0, wrong = 0, index = 0;
     TextView next;
-    Random random;
 
     CountDownTimer countDownTimer;
     int timervalue = 20;
-
     LinearProgressIndicator linearProgressIndicator;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
-        questions = findViewById(R.id.quest);
-        quiz = findViewById(R.id.quiz_arena);
-        optbtn1 = findViewById(R.id.b1);
-        optbtn2 = findViewById(R.id.b2);
-        optbtn3 = findViewById(R.id.b3);
-        optbtn4 = findViewById(R.id.b4);
-        next = findViewById(R.id.nextbtn);
+
+        idmethod();
 
         next.setClickable(false);
-        allquestionlist=quizModals;
+//        next.setVisibility(View.INVISIBLE);
+        allquestionlist = quizModals;
         Collections.shuffle(allquestionlist);//to get random questions in the quiz
-        quizModal=quizModals.get(index);
-//        quizModals = new ArrayList<>();
-        random =  new Random();
-//        addingquestion(quizModals);
-        currentpos = random.nextInt(quizModals.size());
-        setDatatoViews(currentpos);
-//        resetcolour();
-
-        optbtn1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(quizModals.get(currentpos).getAnswer().trim().toLowerCase().equals(optbtn1.getText().toString().trim().toLowerCase())){
-                    currentscore++;
-                }
-                questAttempted++;
-                currentpos = random.nextInt(quizModals.size());
-                setDatatoViews(currentpos);
-            }
-        });
-
-        optbtn2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(quizModals.get(currentpos).getAnswer().trim().toLowerCase().equals(optbtn2.getText().toString().trim().toLowerCase())){
-                    currentscore++;
-                }
-                questAttempted++;
-                currentpos = random.nextInt(quizModals.size());
-                setDatatoViews(currentpos);
-
-            }
-        });
-
-        optbtn3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(quizModals.get(currentpos).getAnswer().trim().toLowerCase().equals(optbtn3.getText().toString().trim().toLowerCase())){
-                    currentscore++;
-                }
-                questAttempted++;
-                currentpos = random.nextInt(quizModals.size());
-                setDatatoViews(currentpos);
-
-            }
-        });
-
-        optbtn4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(quizModals.get(currentpos).getAnswer().trim().toLowerCase().equals(optbtn4.getText().toString().trim().toLowerCase())){
-                    currentscore++;
-                }
-                questAttempted++;
-                currentpos = random.nextInt(quizModals.size());
-                setDatatoViews(currentpos);
-
-            }
-        });
-
-
-        linearProgressIndicator = findViewById(R.id.quest_timer);
-        countDownTimer = new CountDownTimer(20000,1000) {
+        quizModal = quizModals.get(index);
+        setDatatoViews();
+        resetcolour();
+        countDownTimer = new CountDownTimer(30000, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
-                timervalue = timervalue-1;
+                timervalue = timervalue - 1;
                 linearProgressIndicator.setProgress(timervalue);
             }
 
@@ -133,7 +69,7 @@ public class DashboardActivity extends AppCompatActivity {
                 dialog.findViewById(R.id.try_again).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent  intent = new Intent(DashboardActivity.this,MainActivity.class);
+                        Intent intent = new Intent(DashboardActivity.this, DashboardActivity.class);
                         startActivity(intent);
                         finish();
                     }
@@ -142,53 +78,52 @@ public class DashboardActivity extends AppCompatActivity {
         }.start();
     }
 
-    /*showing score of the quiz*/
-    private void scoresheet() {
-        BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(DashboardActivity.this);
-        View bottomSheet = LayoutInflater.from(getApplicationContext()).inflate(R.layout.activity_final_result, (RelativeLayout) findViewById(R.id.score));
-        Button replay = bottomSheet.findViewById(R.id.replay);
-        TextView scoretv = bottomSheet.findViewById(R.id.scores);
-        scoretv.setText("Your Score is :" + currentscore + "/10");
-        replay.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                currentpos = random.nextInt(quizModals.size());
-                setDatatoViews(currentpos);
-                questAttempted = 1;
-                currentscore = 0;
-                bottomSheetDialog.dismiss();
-            }
-        });
-        bottomSheetDialog.setCancelable(false);//to avoid cancelling on clicking on another part of the screen
-        bottomSheetDialog.setContentView(bottomSheet);
-        bottomSheetDialog.show();
+    private void idmethod() {
+        linearProgressIndicator = findViewById(R.id.quest_timer);
+        questions = findViewById(R.id.quest);
+        textbtnA = findViewById(R.id.btnA);
+        textbtnB = findViewById(R.id.btnB);
+        textbtnC = findViewById(R.id.btnC);
+        textbtnD = findViewById(R.id.btnD);
+
+        cardOptA = findViewById(R.id.cardoA);
+        cardOptB = findViewById(R.id.cardoB);
+        cardOptC = findViewById(R.id.cardoC);
+        cardOptD = findViewById(R.id.cardoD);
+
+        next = findViewById(R.id.nextbtn);
     }
 
-    private void setDatatoViews(int currentpos) {
-        questions.setText(quizModals.get(currentpos).getQuestion());
-        optbtn1.setText(quizModals.get(currentpos).getOption1());
-        optbtn2.setText(quizModals.get(currentpos).getOption2());
-        optbtn3.setText(quizModals.get(currentpos).getOption3());
-        optbtn4.setText(quizModals.get(currentpos).getOption4());
+
+    private void setDatatoViews() {
+        questions.setText(quizModal.getQuestion());
+        textbtnA.setText(quizModal.getOption1());
+        textbtnB.setText(quizModal.getOption2());
+        textbtnC.setText(quizModal.getOption3());
+        textbtnD.setText(quizModal.getOption4());
     }
 
-    public void correctans(Button button)
+
+    public void correctans(CardView cardView)
     {
+//        next.setVisibility(View.VISIBLE);
+        cardView.setCardBackgroundColor(getResources().getColor(R.color.design_default_color_secondary));
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 correct++;
                 index++;
-                quizModal=quizModals.get(index);
-                setDatatoViews(currentpos);
+                quizModal=quizModals.get(index);//to get the position of the list in model class
+                setDatatoViews();
                 enablebutton();
             }
         });
     }
 
-    public void wrongans(Button button)//maybe some error here
+    public void wrongans(CardView cardOptA)
     {
-        button.setBackgroundColor(getResources().getColor(R.color.design_default_color_error));
+//        next.setVisibility(View.VISIBLE);
+        cardOptA.setCardBackgroundColor(getResources().getColor(android.R.color.holo_red_light));
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -197,7 +132,8 @@ public class DashboardActivity extends AppCompatActivity {
                 {
                     index++;
                     quizModal=quizModals.get(index);
-                    setDatatoViews(currentpos);
+                    setDatatoViews();
+                    resetcolour();
                     enablebutton();
                 }
                 else
@@ -209,8 +145,6 @@ public class DashboardActivity extends AppCompatActivity {
         });
     }
 
-
-
     private void GameWon() {
         Intent intent = new Intent(DashboardActivity.this,FinalResult.class);
         intent.putExtra("correct",correct);
@@ -220,37 +154,40 @@ public class DashboardActivity extends AppCompatActivity {
 
     public void enablebutton()
     {
-        optbtn1.setClickable(true);
-        optbtn2.setClickable(true);
-        optbtn3.setClickable(true);
-        optbtn4.setClickable(true);
+        cardOptA.setClickable(true);
+        cardOptB.setClickable(true);
+        cardOptC.setClickable(true);
+        cardOptD.setClickable(true);
     }
     public void dissablebutton()
     {
-        optbtn1.setClickable(false);
-        optbtn2.setClickable(false);
-        optbtn3.setClickable(false);
-        optbtn4.setClickable(false);
+        cardOptA.setClickable(false);
+        cardOptB.setClickable(false);
+        cardOptC.setClickable(false);
+        cardOptD.setClickable(false);
     }
 
     public void resetcolour()
     {
-        optbtn1.setBackgroundColor(getResources().getColor(R.color.white));
-        optbtn2.setBackgroundColor(getResources().getColor(R.color.white));
-        optbtn3.setBackgroundColor(getResources().getColor(R.color.white));
-        optbtn4.setBackgroundColor(getResources().getColor(R.color.white));
+        cardOptA.setCardBackgroundColor(getResources().getColor(R.color.white));
+        cardOptB.setCardBackgroundColor(getResources().getColor(R.color.white));
+        cardOptC.setCardBackgroundColor(getResources().getColor(R.color.white));
+        cardOptD.setCardBackgroundColor(getResources().getColor(R.color.white));
     }
 
-    public void b1(View view){
-        next.setClickable(true);
+
+    public void optAclick(View view) {
         dissablebutton();
+        next.setClickable(true);
+//        next.setVisibility(View.VISIBLE);
         if(quizModal.getOption1().equals(quizModal.getAnswer()))
         {
-            optbtn1.setBackgroundColor(getResources().getColor(R.color.teal_200));
-            if(index<quizModals.size()-1)
+//            cardOptA.setCardBackgroundColor(getResources().getColor(R.color.design_default_color_secondary));
+            if(index < quizModals.size()-1)
             {
-                correctans(optbtn1);
-//                resetcolour();
+                correctans(cardOptA);
+                resetcolour();//some error
+
             }
             else
             {
@@ -258,19 +195,22 @@ public class DashboardActivity extends AppCompatActivity {
             }
         }
         else
-            wrongans(optbtn1);
+            wrongans(cardOptA);
+
     }
 
-    public void b2(View view){
-        next.setClickable(true);
+    public void optBclick(View view) {
         dissablebutton();
+        next.setClickable(true);
+//        next.setVisibility(View.VISIBLE);
         if(quizModal.getOption2().equals(quizModal.getAnswer()))
         {
-            optbtn2.setBackgroundColor(getResources().getColor(R.color.teal_200));
+//            cardOptB.setCardBackgroundColor(getResources().getColor(R.color.design_default_color_secondary));
             if(index<quizModals.size()-1)
             {
-                correctans(optbtn2);
-//                resetcolour();
+                correctans(cardOptB);
+                resetcolour();//some error
+
             }
             else
             {
@@ -278,19 +218,22 @@ public class DashboardActivity extends AppCompatActivity {
             }
         }
         else
-            wrongans(optbtn2);
+            wrongans(cardOptB);
+
     }
 
-    public void b3(View view){
-        next.setClickable(true);
+    public void optCclick(View view) {
         dissablebutton();
+        next.setClickable(true);
+//        next.setVisibility(View.VISIBLE);
         if(quizModal.getOption3().equals(quizModal.getAnswer()))
         {
-            optbtn3.setBackgroundColor(getResources().getColor(R.color.teal_200));
+//            cardOptC.setCardBackgroundColor(getResources().getColor(R.color.design_default_color_secondary));
             if(index<quizModals.size()-1)
             {
-                correctans(optbtn3);
-//                resetcolour();
+                correctans(cardOptC);
+                resetcolour();//some error
+
             }
             else
             {
@@ -298,20 +241,22 @@ public class DashboardActivity extends AppCompatActivity {
             }
         }
         else
-            wrongans(optbtn3);
+            wrongans(cardOptC);
+
     }
 
-    public void b4(View view){
-        next.setClickable(true);
+    public void optDclick(View view) {
         dissablebutton();
+        next.setClickable(true);
+//        next.setVisibility(View.VISIBLE);
         if(quizModal.getOption4().equals(quizModal.getAnswer()))
         {
-            optbtn4.setBackgroundColor(getResources().getColor(R.color.teal_200));
+//            cardOptD.setCardBackgroundColor(getResources().getColor(R.color.design_default_color_secondary));
             if(index<quizModals.size()-1)
             {
+                correctans(cardOptD);
+                resetcolour();//some error
 
-//                resetcolour();
-                correctans(optbtn4);
             }
             else
             {
@@ -319,6 +264,7 @@ public class DashboardActivity extends AppCompatActivity {
             }
         }
         else
-            wrongans(optbtn4);
+            wrongans(cardOptD);
+
     }
 }

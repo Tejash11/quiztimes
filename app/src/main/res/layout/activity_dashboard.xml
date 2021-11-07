@@ -66,105 +66,177 @@
         android:shadowRadius="5"
         />
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="450dp"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:background="@drawable/d1"
+        android:layout_margin="20dp">
+
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardview"
-        app:cardCornerRadius="30dp"
+        android:id="@+id/cardview_quest"
+        app:cardCornerRadius="15dp"
         android:layout_width="350dp"
-        android:layout_height="wrap_content"
+        android:layout_height="90dp"
         android:layout_below="@+id/quiz_time"
         android:layout_centerInParent="true"
         android:layout_centerVertical="true"
-        android:layout_marginTop="50dp"
+        android:layout_margin="20dp"
         android:layout_gravity="center"
-        android:outlineAmbientShadowColor="@color/white"
-        >
-        <LinearLayout
+        android:outlineAmbientShadowColor="@color/white">
+
+        <TextView
+            android:id="@+id/quest"
+            android:layout_below="@+id/quiz_arena"
             android:layout_width="match_parent"
-            android:layout_height="420dp"
-            android:orientation="vertical"
-            android:layout_gravity="center"
+            android:layout_height="wrap_content"
+            android:text="QUESTIONS"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:textColorHighlight="@color/white"
             android:gravity="center"
-            android:textAlignment="center"
-            android:background="@drawable/d1"
-            android:showDividers="middle"
-            android:outlineAmbientShadowColor="@color/white">
-
-            <TextView
-                android:id="@+id/quest"
-                android:layout_below="@+id/quiz_arena"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="QUESTIONS"
-                android:textSize="18sp"
-                android:textColor="@color/black"
-                android:textColorHighlight="@color/white"
-                android:gravity="center"
-                android:textStyle="bold"
-                android:layout_marginTop="10dp"
-                android:layout_gravity="center"
-                />
-            <LinearLayout
-                android:id="@+id/linear"
-                android:layout_below="@+id/quest"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_margin="20dp">
-
-                <Button
-                    android:id="@+id/b1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Option 1"
-                    android:textSize="16sp"
-                    android:textColor="@color/black"
-                    android:backgroundTint="#06BCAB"
-                    />
-                <Button
-                    android:id="@+id/b2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Option 2"
-                    android:textSize="16sp"
-                    android:textColor="@color/black"
-                    android:backgroundTint="#06BCAB"
-                    />
-                <Button
-                    android:id="@+id/b3"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Option 3"
-                    android:textSize="16sp"
-                    android:textColor="@color/black"
-                    android:backgroundTint="#06BCAB"
-                    />
-                <Button
-                    android:id="@+id/b4"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Option 4"
-                    android:textSize="16sp"
-                    android:textColor="@color/black"
-                    android:backgroundTint="#06BCAB"
-                    />
-            </LinearLayout>
-        </LinearLayout>
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            />
     </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:onClick="optAclick"
+        android:id="@+id/cardoA"
+        app:cardCornerRadius="30dp"
+        android:layout_width="320dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/quiz_time"
+        android:layout_centerInParent="true"
+        android:layout_centerVertical="true"
+        android:layout_margin="10dp"
+        android:layout_gravity="center"
+        android:outlineAmbientShadowColor="@color/white">
+
+        <TextView
+            android:id="@+id/btnA"
+            android:layout_below="@+id/quiz_arena"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="A"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:textColorHighlight="@color/white"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            />
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:onClick="optBclick"
+        android:id="@+id/cardoB"
+        app:cardCornerRadius="30dp"
+        android:layout_width="320dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/quiz_time"
+        android:layout_centerInParent="true"
+        android:layout_centerVertical="true"
+        android:layout_margin="10dp"
+        android:layout_gravity="center"
+        android:outlineAmbientShadowColor="@color/white">
+
+        <TextView
+            android:id="@+id/btnB"
+            android:layout_below="@+id/quiz_arena"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="B"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:textColorHighlight="@color/white"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            />
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:onClick="optCclick"
+        android:id="@+id/cardoC"
+        app:cardCornerRadius="30dp"
+        android:layout_width="320dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/quiz_time"
+        android:layout_centerInParent="true"
+        android:layout_centerVertical="true"
+        android:layout_margin="10dp"
+        android:layout_gravity="center"
+        android:outlineAmbientShadowColor="@color/white">
+
+        <TextView
+            android:id="@+id/btnC"
+            android:layout_below="@+id/quiz_arena"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="C"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:textColorHighlight="@color/white"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            />
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:onClick="optDclick"
+        android:id="@+id/cardoD"
+        app:cardCornerRadius="30dp"
+        android:layout_width="320dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/quiz_time"
+        android:layout_centerInParent="true"
+        android:layout_centerVertical="true"
+        android:layout_margin="10dp"
+        android:layout_gravity="center"
+        android:outlineAmbientShadowColor="@color/white">
+
+        <TextView
+            android:id="@+id/btnD"
+            android:layout_below="@+id/quiz_arena"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="D"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:textColorHighlight="@color/white"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            />
+    </androidx.cardview.widget.CardView>
+</LinearLayout>
+
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_gravity="center">
 
     <TextView
         android:id="@+id/nextbtn"
         android:layout_width="300dp"
-        android:layout_height="30dp"
+        android:layout_height="40dp"
         android:text="next"
         android:textAllCaps="true"
         android:textColor="@color/white"
-        android:textSize="20sp"
+        android:textSize="22sp"
         android:textStyle="bold"
         android:contextClickable="true"
         android:layout_gravity="center"
-        android:layout_margin="20dp"
+        android:gravity="center"
+        android:layout_margin="30dp"
         android:textAlignment="center"
         android:background="@drawable/d2"
         android:shadowColor="#E6EBED"
-        android:shadowRadius="5"/>
+        android:shadowRadius="5" />
+</LinearLayout>
+
 </LinearLayout>
